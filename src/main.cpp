@@ -1,7 +1,14 @@
-#include <iostream>
+#include <QApplication>
+#include <QtWidgets>
 
-int main()
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello World!";
-    return 0;
+    QApplication app(argc, argv);
+
+    QWidget window;
+    window.show();
+    window.setWindowTitle("Lazik's Chess");
+    //window.showFullScreen();
+
+    return app.exec();
 }
