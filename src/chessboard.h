@@ -25,8 +25,9 @@ public:
     void PrintChessboard(Color color);
 
 private:
-    Piece* chessboard[MAX_COLUMNS][MAX_ROWS];
+    Piece* m_chessboard[MAX_COLUMNS][MAX_ROWS];
     QGraphicsScene* m_scene;
     QGraphicsView* m_view;
     Position m_position;
+    Position m_piece_coordinates[MAX_COLUMNS][MAX_ROWS];
 };

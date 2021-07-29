@@ -6,7 +6,7 @@
 
 const qint16 MAX_SCREEN_WIDTH = 1200;
 const qint16 MAX_SCREEN_HEIGHT = 800;
-const qint8 PIXEL_OFFSET = 10;
+const qint8 PIXEL_OFFSET = 2;
 
 ChessWindow::ChessWindow() :
     m_scene(nullptr), m_view(nullptr), m_chessboard(nullptr)
@@ -16,9 +16,7 @@ ChessWindow::ChessWindow() :
 
 ChessWindow::~ChessWindow()
 {
-    delete m_scene;
-    delete m_view;
-    delete m_chessboard;
+
 }
 
 bool ChessWindow::Initialize()
@@ -40,7 +38,7 @@ bool ChessWindow::Initialize()
     // view->setScene(scene);
 
     // Create a chessboard
-    m_chessboard = new Chessboard(m_scene, m_view);
+    m_chessboard = new Chessboard(m_scene, m_view, { 1, 100});
 
     return true;
 }

@@ -49,24 +49,25 @@ struct ForsythEdwardNotation
     QChar notation;
     Ranks rank;
     Color color;
+    QString image_string;
 };
 
 const ForsythEdwardNotation FEN_Notation[MAX_NOTATIONS] =
 {
     // WHITE
-    { 'P', Ranks::PAWN, Color::WHITE },
-    { 'B', Ranks::BISHOP, Color::WHITE },
-    { 'N', Ranks::KNIGHT, Color::WHITE },
-    { 'R', Ranks::ROOK, Color::WHITE },
-    { 'Q', Ranks::QUEEN, Color::WHITE },
-    { 'K', Ranks::KING, Color::WHITE },
+    { 'P', Ranks::PAWN, Color::WHITE, ":/pictures/graphics/White_Pawn.png" },
+    { 'B', Ranks::BISHOP, Color::WHITE, ":/pictures/graphics/White_Bishop.png" },
+    { 'N', Ranks::KNIGHT, Color::WHITE, ":/pictures/graphics/White_Knight.png" },
+    { 'R', Ranks::ROOK, Color::WHITE, ":/pictures/graphics/White_Rook.png" },
+    { 'Q', Ranks::QUEEN, Color::WHITE, ":/pictures/graphics/White_Queen.png" },
+    { 'K', Ranks::KING, Color::WHITE, ":/pictures/graphics/White_King.png" },
     // BLACK
-    { 'p', Ranks::PAWN, Color::BLACK },
-    { 'b', Ranks::BISHOP, Color::BLACK },
-    { 'n', Ranks::KNIGHT, Color::BLACK },
-    { 'r', Ranks::ROOK, Color::BLACK },
-    { 'q', Ranks::QUEEN, Color::BLACK },
-    { 'k', Ranks::KING, Color::BLACK },
+    { 'p', Ranks::PAWN, Color::BLACK, ":/pictures/graphics/Black_Pawn.png" },
+    { 'b', Ranks::BISHOP, Color::BLACK, ":/pictures/graphics/Black_Bishop.png" },
+    { 'n', Ranks::KNIGHT, Color::BLACK, ":/pictures/graphics/Black_Knight.png" },
+    { 'r', Ranks::ROOK, Color::BLACK, ":/pictures/graphics/Black_Rook.png" },
+    { 'q', Ranks::QUEEN, Color::BLACK, ":/pictures/graphics/Black_Queen.png" },
+    { 'k', Ranks::KING, Color::BLACK, ":/pictures/graphics/Black_King.png" },
 };
 
 // Forsyth Edwards Notation
@@ -78,6 +79,6 @@ const QString DEFAULT_POS = { "RNBQKBNR\\PPPPPPPP\\8\\8\\8\\8\\pppppppp\\rnbkqbn
 
 struct Position
 {
-    qint8 posX;
-    qint8 posY;
+    qint16 posX;
+    qint16 posY;
 };

@@ -8,9 +8,8 @@ Chessboard::Chessboard(QGraphicsScene* scene, QGraphicsView* view, Position posi
 {
     //setRect(position.posX + 50, position.posY + 50, 50, 50);
     setPixmap(QPixmap(":/pictures/graphics/Chessboard.png"));
-
-    this->setPos(position.posX, position.posY);
     scene->addItem(this);
+    setPos(position.posX, position.posY);
 
     Initialize();
     DefaultPosition();
@@ -21,12 +20,13 @@ Chessboard::~Chessboard()
 }
 
 bool Chessboard::Initialize()
-{    
-    for (size_t i = 0; i < MAX_COLUMNS; i++)
+{
+    for (qint8 i = 0; i < MAX_COLUMNS; i++)
     {
-        for (size_t j = 0; j < MAX_ROWS; j++)
+        for (qint8 j = 0; j < MAX_ROWS; j++)
         {
-            chessboard[i][j] = nullptr;
+            m_chessboard[i][j] = nullptr;
+            m_piece_coordinates[i][j] = { i * 56 + m_position.posX + 23, j * 56 + m_position.posY + 23};
         }
     }
     return true;
@@ -73,7 +73,7 @@ void Chessboard::LoadPosition(QString position)
         const QChar annotation = position.at(i);
         Color color;
         Ranks rank;
-        Position position = { column, row };
+        Position position = m_piece_coordinates[column][row];
         if (GetLoadedPieceInfo(annotation, color, rank))
             AddPiece(column, row, rank, color, position, m_scene);
 
@@ -98,7 +98,7 @@ Piece* Chessboard::AddPiece(qint8& column, qint8& row, Ranks rank, Color color, 
     Piece* piece = new Piece(rank, color, position, scene);
     if (piece)
     {
-        this->chessboard[column][row] = piece;
+        this->m_chessboard[column][row] = piece;
 
         if (DEBUG)
             qDebug() << "Creating piece at position - Column: " << column << " Row: " << row << " and rank: " << piece->PrintRank() << piece->PrintPositon() << "\n";
@@ -144,8 +144,8 @@ void Chessboard::PrintChessboard(Color color)
     {
         for (qint8 j = 0; j < MAX_COLUMNS; j++)
         {
-            if (chessboard[j][i] != nullptr)
-                output += chessboard[j][i]->PrintRank();
+            if (m_chessboard[j][i] != nullptr)
+                output += m_chessboard[j][i]->PrintRank();
             else
                 output += "  ";
         }

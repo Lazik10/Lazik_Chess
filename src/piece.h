@@ -12,6 +12,8 @@ public:
 
     inline Ranks GetRank() { return m_rank; }
     inline Position GetPosition() { return m_position; }
+    QString GetImageString();
+
     QString PrintRank();
     QString PrintPositon();
 
