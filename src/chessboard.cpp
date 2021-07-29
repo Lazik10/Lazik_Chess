@@ -1,8 +1,17 @@
+#include <QGraphicsView>
+
 #include "chessboard.h"
 #include <iostream>
 
-Chessboard::Chessboard()
+Chessboard::Chessboard(QGraphicsScene* scene, QGraphicsView* view, Position position) :
+    m_scene(scene), m_view(view), m_position(position)
 {
+    //setRect(position.posX + 50, position.posY + 50, 50, 50);
+    setPixmap(QPixmap(":/pictures/graphics/Chessboard.png"));
+
+    this->setPos(position.posX, position.posY);
+    scene->addItem(this);
+
     Initialize();
     DefaultPosition();
 }
@@ -12,7 +21,7 @@ Chessboard::~Chessboard()
 }
 
 bool Chessboard::Initialize()
-{
+{    
     for (size_t i = 0; i < MAX_COLUMNS; i++)
     {
         for (size_t j = 0; j < MAX_ROWS; j++)
@@ -44,7 +53,6 @@ void Chessboard::LoadPosition(QString position)
     {
         qDebug() << position[i];
         // Actual position when looping through our string which is storing our position
-        qint8 actualPos{ 0 };
 
         // Start filling next row when we run into \ in a position string
         if (position.at(i) == '\\')
@@ -67,7 +75,7 @@ void Chessboard::LoadPosition(QString position)
         Ranks rank;
         Position position = { column, row };
         if (GetLoadedPieceInfo(annotation, color, rank))
-            AddPiece(column, row, rank, color, position);
+            AddPiece(column, row, rank, color, position, m_scene);
 
         column++;
 
@@ -82,12 +90,12 @@ void Chessboard::LoadPosition(QString position)
         qDebug() << "Chess position loaded sucessfully!";
 }
 
-Piece* Chessboard::AddPiece(qint8& column, qint8& row, Ranks rank, Color color, Position position)
+Piece* Chessboard::AddPiece(qint8& column, qint8& row, Ranks rank, Color color, Position position, QGraphicsScene* scene)
 {
     if (DEBUG)
         qDebug() << "Adding Pieces to Chessboard";
 
-    Piece* piece = new Piece(rank, color, position);
+    Piece* piece = new Piece(rank, color, position, scene);
     if (piece)
     {
         this->chessboard[column][row] = piece;

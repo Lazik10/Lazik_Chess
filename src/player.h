@@ -1,6 +1,6 @@
 #pragma once
 
-#include <qstring>
+#include <QString>
 
 class Player
 {

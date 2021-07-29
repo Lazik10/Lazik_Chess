@@ -1,7 +1,7 @@
 #pragma once
 
-#include <qtglobal>
-#include <qstring>
+#include <QtGlobal>
+#include <QString>
 
 #define DEBUGGER 1;
 constexpr auto DEBUG        = 1;

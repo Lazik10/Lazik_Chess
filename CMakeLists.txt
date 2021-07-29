@@ -28,7 +28,8 @@ include_directories(${SOURCE_DIR})
 file(GLOB_RECURSE SOURCES
     "${FORMS_DIR}/*.ui"
     "${FORMS_DIR}/*.qrc"
-    "${INCLUDE_DIR}/*.h"
+    #"${INCLUDE_DIR}/*.h"
+	"${SOURCE_DIR}/*.h"
     "${SOURCE_DIR}/*.cpp"
 )
 

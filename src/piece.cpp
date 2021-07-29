@@ -1,6 +1,7 @@
 //#include <iostream>
-#include <qdebug>
-#include <qkeyevent>
+#include <QDebug>
+#include <QKeyEvent>
+#include <QGraphicsView>
 
 #include "piece.h"
 
@@ -10,9 +11,21 @@ Piece::Piece() :
 
 }
 
-Piece::Piece(Ranks rank, Color color, Position positions) :
-    m_pointer(this), m_rank(rank), m_color(color), m_position(positions)
+Piece::Piece(Ranks rank, Color color, Position position, QGraphicsScene* scene) :
+    m_pointer(this), m_rank(rank), m_color(color), m_position(position)
 {
+    if (rank == Ranks::QUEEN)
+    {
+        //setRect(position.posX + 50, position.posY + 50, 50, 50);
+        setPixmap(QPixmap(":/pictures/graphics/Black_Queen.png"));
+
+        this->setPos(position.posX, position.posY);
+        scene->addItem(this);
+        // Make the item focusable
+        //this->setFlag(QGraphicsItem::ItemIsFocusable);
+        //this->setFocus();
+    }
+
     if (DEBUG)
         qDebug() << "Creating new piece";
 }

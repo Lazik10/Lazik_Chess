@@ -1,23 +1,23 @@
 #pragma once
-#include <qstring>
-#include <qdebug>
-#include <qvector>
+#include <QString>
+#include <QDebug>
+#include <QVector>
 #include <vector>
 
 #include "utilities.h"
 #include "piece.h"
 
-class Chessboard
+class Chessboard : public QGraphicsPixmapItem
 {
 public:
-    Chessboard();
+    Chessboard(QGraphicsScene* scene, QGraphicsView* view, Position position = { 0, 0 });
     ~Chessboard();
 
     bool Initialize();
     void DefaultPosition();
     void LoadPosition(QString position);
 
-    Piece* AddPiece(qint8& column, qint8& row, Ranks rank, Color color, Position position);
+    Piece* AddPiece(qint8& column, qint8& row, Ranks rank, Color color, Position position, QGraphicsScene* scene);
     void DeletePiece(Piece* piece);
     
     bool GetLoadedPieceInfo(const QChar& notation, Color& color, Ranks& rank);
@@ -26,4 +26,7 @@ public:
 
 private:
     Piece* chessboard[MAX_COLUMNS][MAX_ROWS];
+    QGraphicsScene* m_scene;
+    QGraphicsView* m_view;
+    Position m_position;
 };

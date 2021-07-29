@@ -1,13 +1,13 @@
 #pragma once
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 
 #include "utilities.h"
 
-class Piece : public QGraphicsRectItem
+class Piece : public QGraphicsPixmapItem
 {
 public:
     Piece();
-    Piece(Ranks rank, Color color, Position position);
+    Piece(Ranks rank, Color color, Position position, QGraphicsScene* scene);
     ~Piece();
 
     inline Ranks GetRank() { return m_rank; }
